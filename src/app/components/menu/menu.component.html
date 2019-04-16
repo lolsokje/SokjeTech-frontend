@@ -1,12 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand" href="#">SokjeTech</a>
+    <a class="navbar-brand" routerLink="home">SokjeTech</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
+      <ul class="navbar-nav mr-auto" *ngIf="isLoggedIn">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="teamDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Teams
@@ -27,6 +27,14 @@
             <a class="dropdown-item">Create Driver</a>
           </div>
         </li>
+      </ul>
+      <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+        <li class="nav-item"><a routerLink="login" class="nav-link">Login</a></li>
+        <li class="nav-item"><a routerLink="register" class="nav-link">Register</a></li>
+      </ul>
+      <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+        <li class="nav-item"><a routerLink="home" class="nav-link">Profile</a></li>
+        <li class="nav-item"><a (click)="logout()" class="nav-link" id="btn-logout">Log out</a></li>
       </ul>
     </div>
   </div>
