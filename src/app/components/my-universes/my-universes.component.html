@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <div class="d-flex justify-content-center" *ngIf="!universes">
+      <div class="spinner-border text-orange" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    <div id="universes" *ngIf="universes">
+      <table class="table">
+        <thead>
+          <tr class="row">
+            <th class="col-md-8">Universe Name</th>
+            <th class="col-md-2"></th>
+            <th class="col-md-2"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row" *ngFor="let universe of universes">
+            <td class="col-md-8">{{ universe.name }}</td>
+            <td class="col-md-2"><a [routerLink]="['/edit-universe', universe.id]" class="btn btn-success">Edit</a></td>
+            <td class="col-md-2"><button (click)="delete(universe.id, $event)" class="btn btn-danger">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-md-3"></div>
+</div>

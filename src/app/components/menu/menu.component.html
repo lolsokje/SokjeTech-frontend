@@ -13,7 +13,6 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="teamDropDown">
             <a class="dropdown-item" routerLink="my-teams">My Teams</a>
-            <a class="dropdown-item">Edit Teams</a>
             <a class="dropdown-item">Create Team</a>
           </div>
         </li>
@@ -23,8 +22,34 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="driverDropdown">
             <a class="dropdown-item">My Drivers</a>
-            <a class="dropdown-item">Edit Drivers</a>
             <a class="dropdown-item">Create Driver</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="universeDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Universes
+          </a>
+          <div class="dropdown-menu" aria-labelledby="universeDropdown">
+            <a class="dropdown-item" routerLink="my-universes">My Universes</a>
+            <a class="dropdown-item" routerLink="create-universe">Create Universe</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="seriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Series
+          </a>
+          <div class="dropdown-menu" aria-labelledby="seriesDropdown">
+            <a class="dropdown-item">My Series</a>
+            <a class="dropdown-item">Create Series</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="seasonDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Seasons
+          </a>
+          <div class="dropdown-menu" aria-labelledby="seasonDropdown">
+            <a class="dropdown-item">My Seasons</a>
+            <a class="dropdown-item">Create Season</a>
           </div>
         </li>
       </ul>
@@ -33,7 +58,7 @@
         <li class="nav-item"><a routerLink="register" class="nav-link">Register</a></li>
       </ul>
       <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
-        <li class="nav-item"><a routerLink="home" class="nav-link">Profile</a></li>
+        <li class="nav-item"><a routerLink="profile" class="nav-link">Profile</a></li>
         <li class="nav-item"><a (click)="logout()" class="nav-link" id="btn-logout">Log out</a></li>
       </ul>
     </div>

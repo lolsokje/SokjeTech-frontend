@@ -37,6 +37,8 @@ export class LoginComponent implements OnInit {
 
     if (success) {
       this.router.navigate(['home']);
+    } else {
+      this.submitted = false;
     }
   }
 

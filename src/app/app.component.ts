@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/auth.service';
+import { UniverseService } from 'src/app/universe.service';
 
 @Component({
   selector: 'app-root',
@@ -9,13 +10,15 @@ import { AuthService } from 'src/app/auth.service';
 export class AppComponent {
   title = 'SokjeTech-frontend';
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private universeService: UniverseService) {
     const token = sessionStorage.getItem('token');
+    const id = sessionStorage.getItem('uid');
 
-    if (token) {
+    if (token && id) {
       this.authService.IsLoggedIn = true;
       (async () => {
-        await this.authService.getUser(parseInt(sessionStorage.getItem('uid'), 10));
+        await this.authService.getUser(parseInt(id, 10));
+        await this.universeService.getAll();
       })();
     }
   }

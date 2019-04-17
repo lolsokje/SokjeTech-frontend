@@ -10,6 +10,10 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { CreateUniverseComponent } from './components/create-universe/create-universe.component';
+import { MyUniversesComponent } from './components/my-universes/my-universes.component';
+import { EditUniverseComponent } from './components/edit-universe/edit-universe.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,11 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    CreateUniverseComponent,
+    MyUniversesComponent,
+    EditUniverseComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

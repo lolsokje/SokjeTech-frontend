@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        Create Universe
+      </div>
+      <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="name">Universe name</label>
+            <input type="text" formControlName="name" id="name" class="form-control">
+          </div>
+
+          <button type="submit" class="btn btn-orange" [disabled]="!form.valid || submitted">Create Universe</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3"></div>
+</div>
