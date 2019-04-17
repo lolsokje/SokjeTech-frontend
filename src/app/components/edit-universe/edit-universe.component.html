@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <a routerLink="/my-universes">&larr; back</a>
+    <div class="d-flex justify-content-center" *ngIf="loading">
+      <div class="spinner-border text-orange" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    <div class="card" *ngIf="!loading">
+      <div class="card-header">
+        Edit universe
+      </div>
+      <div class="card-body">
+        <p *ngIf="!universe">No universe could be found.</p>
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="universe">
+          <div class="form-group">
+            <label for="name">Universe name</label>
+            <input type="text" formControlName="name" id="name" class="form-control">
+          </div>
+
+          <button type="submit" class="btn btn-orange" [disabled]="!form.valid || submitted">Save Changes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3"></div>
+</div>

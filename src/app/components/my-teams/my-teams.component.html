@@ -1,0 +1,28 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Team name</th>
+      <th>Driver name</th>
+      <th>Number</th>
+      <th>Team</th>
+      <th>Driver</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let team of teams">
+    <tr>
+      <td rowspan="2" class="align-middle">{{ team.name }}</td>
+      <td>{{ team.drivers[0].firstName }} {{ team.drivers[0].lastName }}</td>
+      <th class="text-center" [style.background-color]="team.primary" [style.color]="team.secondary">{{ team.drivers[0].number }}</th>
+      <th rowspan="2" class="align-middle text-center">{{ team.rating }}</th>
+      <th class="text-center">{{ team.drivers[0].rating }}</th>
+      <th class="text-center">{{ team.rating + team.drivers[0].rating }}</th>
+    </tr>
+    <tr>
+      <td>{{ team.drivers[1].firstName }} {{ team.drivers[1].lastName }}</td>
+      <th class="text-center" [style.background-color]="team.primary" [style.color]="team.secondary">{{ team.drivers[1].number }}</th>
+      <th class="text-center">{{ team.drivers[1].rating }}</th>
+      <th class="text-center">{{ team.rating + team.drivers[1].rating }}</th>
+    </tr>
+  </tbody>
+</table>
