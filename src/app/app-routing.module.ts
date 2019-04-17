@@ -9,6 +9,9 @@ import { CreateUniverseComponent } from 'src/app/components/create-universe/crea
 import { MyUniversesComponent } from 'src/app/components/my-universes/my-universes.component';
 import { EditUniverseComponent } from 'src/app/components/edit-universe/edit-universe.component';
 import { ProfileComponent } from 'src/app/components/profile/profile.component';
+import { CreateSeriesComponent } from 'src/app/components/create-series/create-series.component';
+import { MySeriesComponent } from 'src/app/components/my-series/my-series.component';
+import { EditSeriesComponent } from 'src/app/components/edit-series/edit-series.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -20,6 +23,9 @@ const routes: Routes = [
   { path: 'my-universes', component: MyUniversesComponent },
   { path: 'edit-universe/:id', component: EditUniverseComponent },
   { path: 'create-universe', component: CreateUniverseComponent },
+  { path: 'my-series', component: MySeriesComponent },
+  { path: 'edit-series/:id', component: EditSeriesComponent },
+  { path: 'create-series', component: CreateSeriesComponent },
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '404', pathMatch: 'full' }
 ];

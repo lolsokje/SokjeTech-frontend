@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <app-spinner *ngIf="loading"></app-spinner>
+    <div class="card" *ngIf="!loading">
+      <div class="card-header">
+        Create Series
+      </div>
+      <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="name">Series Name</label>
+            <input type="text" formControlName="name" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label for="universe">Universe</label>
+            <select formControlName="universe" id="universe" class="form-control">
+              <option [ngValue]="null">None</option>
+              <option *ngFor="let universe of universes" [ngValue]="universe.id">{{ universe.name }}</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-orange" [disabled]="!form.valid || submitted">Create Series</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3"></div>
+</div>
