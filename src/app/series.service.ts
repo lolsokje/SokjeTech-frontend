@@ -54,6 +54,34 @@ export class SeriesService {
     }
   }
 
+  async edit(name: string, id: number) {
+    const url = environment.baseApiUrl + '/series/edit';
+    const token = sessionStorage.getItem('token');
+    const uid = sessionStorage.getItem('uid');
+
+    if (token && uid) {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: name,
+          id: id,
+          user_id: uid
+        })
+      });
+
+      return await response.json();
+    } else {
+      return {
+        success: false,
+        message: 'Not logged in.'
+      };
+    }
+  }
+
   async getAll() {
     const url = environment.baseApiUrl + '/series/get-all';
     const token = sessionStorage.getItem('token');
