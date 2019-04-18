@@ -14,6 +14,10 @@ import { CreateUniverseComponent } from './components/create-universe/create-uni
 import { MyUniversesComponent } from './components/my-universes/my-universes.component';
 import { EditUniverseComponent } from './components/edit-universe/edit-universe.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { CreateSeriesComponent } from './components/create-series/create-series.component';
+import { SpinnerComponent } from './partials/spinner/spinner.component';
+import { MySeriesComponent } from './components/my-series/my-series.component';
+import { EditSeriesComponent } from './components/edit-series/edit-series.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,11 @@ import { ProfileComponent } from './components/profile/profile.component';
     CreateUniverseComponent,
     MyUniversesComponent,
     EditUniverseComponent,
-    ProfileComponent
+    ProfileComponent,
+    CreateSeriesComponent,
+    SpinnerComponent,
+    MySeriesComponent,
+    EditSeriesComponent
   ],
   imports: [
     BrowserModule,
