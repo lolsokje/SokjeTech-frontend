@@ -21,4 +21,17 @@ export class MySeriesComponent implements OnInit {
     })();
   }
 
+  async delete(id: number, event) {
+    event.target.disabled = true;
+
+    const response = await this.seriesService.delete(id);
+
+    if (response.success) {
+      const index = this.series.findIndex(s => s.id === id);
+      this.series.splice(index, 1);
+    } else {
+      event.target.disabled = false;
+    }
+  }
+
 }
