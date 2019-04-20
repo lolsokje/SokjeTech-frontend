@@ -12,7 +12,12 @@ export class MySeriesComponent implements OnInit {
   series: Series[];
 
   constructor(private authService: AuthService, private seriesService: SeriesService) {
-    this.seriesService.SeriesAsObservable().subscribe(val => this.series = val);
+    this.seriesService.SeriesAsObservable().subscribe((val) => {
+      if (val) {
+        const user_id = parseInt(this.authService.User.id, 10);
+        this.series = val.filter(s => s.user_id === user_id);
+      }
+    });
   }
 
   ngOnInit() {

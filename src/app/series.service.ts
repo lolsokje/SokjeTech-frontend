@@ -10,8 +10,14 @@ import { Observable } from 'rxjs/internal/Observable';
 export class SeriesService {
   series: BehaviorSubject<Series[]>;
 
+  token: string;
+  uid: number;
+
   constructor() {
     this.series = new BehaviorSubject<Series[]>(null);
+
+    this.token = sessionStorage.getItem('token');
+    this.uid = parseInt(sessionStorage.getItem('uid'), 10);
   }
 
   get Series(): Series[] {
@@ -28,19 +34,17 @@ export class SeriesService {
 
   async create(name: string, universe: number) {
     const url = environment.baseApiUrl + '/series/create';
-    const token = sessionStorage.getItem('token');
-    const id = sessionStorage.getItem('uid');
 
-    if (token && id) {
+    if (this.token && this.uid) {
       const response = await fetch(url, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
+          'Authorization': `Bearer ${this.token}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           name: name,
-          uid: id,
+          uid: this.uid,
           universe: universe
         })
       });
@@ -56,20 +60,18 @@ export class SeriesService {
 
   async edit(name: string, id: number) {
     const url = environment.baseApiUrl + '/series/edit';
-    const token = sessionStorage.getItem('token');
-    const uid = sessionStorage.getItem('uid');
 
-    if (token && uid) {
+    if (this.token && this.uid) {
       const response = await fetch(url, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
+          'Authorization': `Bearer ${this.token}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           name: name,
           id: id,
-          user_id: uid
+          user_id: this.uid
         })
       });
 
@@ -84,19 +86,13 @@ export class SeriesService {
 
   async getAll() {
     const url = environment.baseApiUrl + '/series/get-all';
-    const token = sessionStorage.getItem('token');
-    const id = sessionStorage.getItem('uid');
 
-    if (token && id) {
+    if (this.token && this.uid) {
       const response = await fetch(url, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          id: id
-        })
+          'Authorization': `Bearer ${this.token}`
+        }
       });
 
       this.Series = await response.json();
@@ -110,14 +106,12 @@ export class SeriesService {
 
   async delete(id: number) {
     const url = environment.baseApiUrl + '/series/delete';
-    const token = sessionStorage.getItem('token');
-    const uid = sessionStorage.getItem('uid');
 
-    if (token && uid) {
+    if (this.token && this.uid) {
       const response = await fetch(url, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token} `,
+          'Authorization': `Bearer ${this.token} `,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({

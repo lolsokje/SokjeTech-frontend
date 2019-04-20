@@ -12,7 +12,12 @@ export class MyUniversesComponent implements OnInit {
   universes: Universe[];
 
   constructor(private authService: AuthService, private universeService: UniverseService) {
-    this.universeService.UniversesAsObservable().subscribe(val => this.universes = val);
+    this.universeService.UniversesAsObservable().subscribe((val) => {
+      if (val) {
+        const user_id = parseInt(this.authService.User.id, 10);
+        this.universes = val.filter(u => u.user_id === user_id);
+      }
+    });
   }
 
   ngOnInit() {

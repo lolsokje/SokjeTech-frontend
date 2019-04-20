@@ -10,8 +10,13 @@ import { Observable } from 'rxjs/internal/Observable';
 export class UniverseService {
   universes: BehaviorSubject<Universe[]>;
 
+  token: string;
+  uid: number;
+
   constructor() {
       this.universes = new BehaviorSubject<Universe[]>(null);
+      this.token = sessionStorage.getItem('token');
+      this.uid = parseInt(sessionStorage.getItem('uid'), 10);
   }
 
   get Universes(): Universe[] {
@@ -28,18 +33,16 @@ export class UniverseService {
 
   async create(name: string) {
     const url = environment.baseApiUrl + '/universe/create';
-    const token = sessionStorage.getItem('token');
-    const id = sessionStorage.getItem('uid');
 
-    if (token && id) {
+    if (this.token && this.uid) {
       const response = await fetch(url, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
+          'Authorization': `Bearer ${this.token}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          id: id,
+          id: this.uid,
           name: name
         })
       });
@@ -55,14 +58,12 @@ export class UniverseService {
 
   async edit(name: string, id: number) {
     const url = environment.baseApiUrl + '/universe/edit';
-    const token = sessionStorage.getItem('token');
-    const uid = sessionStorage.getItem('uid');
 
-    if (token && uid) {
+    if (this.token && this.uid) {
       const response = await fetch(url, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
+          'Authorization': `Bearer ${this.token}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -84,19 +85,13 @@ export class UniverseService {
 
   async getAll() {
     const url = environment.baseApiUrl + '/universe/get-all';
-    const token = sessionStorage.getItem('token');
-    const id = sessionStorage.getItem('uid');
 
-    if (token && id) {
+    if (this.token && this.uid) {
       const response = await fetch(url, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token} `,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          user_id: id
-        })
+          'Authorization': `Bearer ${this.token} `
+        }
       });
 
       const json = await response.json();
@@ -107,14 +102,12 @@ export class UniverseService {
 
   async delete(id: number) {
     const url = environment.baseApiUrl + '/universe/delete';
-    const token = sessionStorage.getItem('token');
-    const uid = sessionStorage.getItem('uid');
 
-    if (token && id) {
+    if (this.token && this.uid) {
       const response = await fetch(url, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
+          'Authorization': `Bearer ${this.token}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
