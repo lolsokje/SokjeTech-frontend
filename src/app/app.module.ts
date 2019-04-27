@@ -18,6 +18,8 @@ import { CreateSeriesComponent } from './components/create-series/create-series.
 import { SpinnerComponent } from './partials/spinner/spinner.component';
 import { MySeriesComponent } from './components/my-series/my-series.component';
 import { EditSeriesComponent } from './components/edit-series/edit-series.component';
+import { CreateTeamComponent } from './components/create-team/create-team.component';
+import { CreateDriverComponent } from './components/create-driver/create-driver.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { EditSeriesComponent } from './components/edit-series/edit-series.compon
     CreateSeriesComponent,
     SpinnerComponent,
     MySeriesComponent,
-    EditSeriesComponent
+    EditSeriesComponent,
+    CreateTeamComponent,
+    CreateDriverComponent
   ],
   imports: [
     BrowserModule,
