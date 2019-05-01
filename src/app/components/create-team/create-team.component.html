@@ -19,8 +19,11 @@
 
           <div class="form-group">
             <label for="country">Country</label>
-            <input type="text" formControlName="country" id="name" class="form-control">
+            <input type="text" formControlName="country" (keyup)="filterCountry($event.target.value)" class="form-control" [value]="country.value">
+            <option [value]="country.country" *ngFor="let country of filteredCountries" (click)="selectCountry($event)" class="form-control country-select">{{ country.country }}</option>
           </div>
+
+          <input type="button" class="btn btn-orange" value="Create Team" (click)="onSubmit()" [disabled]="!form.valid || submitted">
         </form>
       </div>
     </div>

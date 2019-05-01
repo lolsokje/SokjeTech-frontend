@@ -1,0 +1,12 @@
+.country-select {
+    border-radius: 0px;
+    border-bottom: none;
+}
+
+.country-select:last-child {
+    border-bottom: 1px solid #DAD4CE;
+}
+
+.country-select:hover {
+    cursor: pointer;
+}
