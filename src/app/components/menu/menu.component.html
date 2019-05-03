@@ -7,7 +7,7 @@
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto" *ngIf="isLoggedIn">
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="teamDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Teams
           </a>
@@ -24,7 +24,7 @@
             <a class="dropdown-item">My Drivers</a>
             <a class="dropdown-item" routerLink="create-driver">Create Driver</a>
           </div>
-        </li>
+        </li> -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="universeDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Universes
@@ -51,7 +51,16 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="seasonDropdown">
             <a class="dropdown-item">My Seasons</a>
-            <a class="dropdown-item">Create Season</a>
+            <a routerLink="create-season" class="dropdown-item">Create Season</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="entryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Entries
+          </a>
+          <div class="dropdown-menu" aria-labelledby="entryDropdown">
+            <a class="dropdown-item">My Entries</a>
+            <a routerLink="enter-season" class="dropdown-item">Enter Season</a>
           </div>
         </li>
       </ul>

@@ -20,6 +20,8 @@ import { MySeriesComponent } from './components/my-series/my-series.component';
 import { EditSeriesComponent } from './components/edit-series/edit-series.component';
 import { CreateTeamComponent } from './components/create-team/create-team.component';
 import { CreateDriverComponent } from './components/create-driver/create-driver.component';
+import { EnterSeasonComponent } from './components/enter-season/enter-season.component';
+import { CreateSeasonComponent } from './components/create-season/create-season.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { CreateDriverComponent } from './components/create-driver/create-driver.
     MySeriesComponent,
     EditSeriesComponent,
     CreateTeamComponent,
-    CreateDriverComponent
+    CreateDriverComponent,
+    EnterSeasonComponent,
+    CreateSeasonComponent
   ],
   imports: [
     BrowserModule,

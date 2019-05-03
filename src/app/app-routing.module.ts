@@ -14,6 +14,8 @@ import { MySeriesComponent } from 'src/app/components/my-series/my-series.compon
 import { EditSeriesComponent } from 'src/app/components/edit-series/edit-series.component';
 import { CreateTeamComponent } from 'src/app/components/create-team/create-team.component';
 import { CreateDriverComponent } from 'src/app/components/create-driver/create-driver.component';
+import { EnterSeasonComponent } from 'src/app/components/enter-season/enter-season.component';
+import { CreateSeasonComponent } from 'src/app/components/create-season/create-season.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -27,6 +29,8 @@ const routes: Routes = [
   { path: 'my-universes', component: MyUniversesComponent },
   { path: 'edit-universe/:id', component: EditUniverseComponent },
   { path: 'create-universe', component: CreateUniverseComponent },
+  { path: 'create-season', component: CreateSeasonComponent },
+  { path: 'enter-season', component: EnterSeasonComponent },
   { path: 'my-series', component: MySeriesComponent },
   { path: 'edit-series/:id', component: EditSeriesComponent },
   { path: 'create-series', component: CreateSeriesComponent },
