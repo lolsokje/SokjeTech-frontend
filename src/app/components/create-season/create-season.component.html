@@ -4,24 +4,176 @@
       <app-spinner *ngIf="!series"></app-spinner>
       <div class="card" *ngIf="series">
         <div class="card-header">
-          Create Season
+          <span *ngIf="currentStep === 1">Basic Season Settings</span>
+          <span *ngIf="currentStep === 2">Team/Driver Related Settings</span>
+          <span *ngIf="currentStep === 3">Session Related Settings</span>
+          <span *ngIf="currentStep === 4">RNG/Rating Related Settings</span>
+          <span *ngIf="currentStep === 5">Team/Driver Development Related Settings</span>
         </div>
         <div class="card-body">
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <div class="form-group">
-              <label for="year">Year</label>
-              <input type="number" class="form-control" formControlName="year" id="year">
+            <div *ngIf="currentStep === 1">
+              <div class="form-group">
+                <label for="year">Year</label>
+                <input type="number" class="form-control" formControlName="year" id="year">
+              </div>
+  
+              <div class="form-group">
+                <label for="selectedSeries">Series (universe)</label>
+                <select name="selectedSeries" id="selectedSeries" formControlName="selectedSeries" class="form-control">
+                  <option value="">Select a series</option>
+                  <option *ngFor="let serie of series" [value]="serie.id">{{ serie.name }}<span *ngIf="serie.universe"> ({{ serie.universe.name}})</span></option>
+                </select>
+              </div>
             </div>
 
-            <div class="form-group">
-              <label for="selectedSeries">Series (universe)</label>
-              <select name="selectedSeries" id="selectedSeries" formControlName="selectedSeries" class="form-control">
-                <option value="">Select a series</option>
-                <option *ngFor="let serie of series" [value]="serie.id">{{ serie.name }}<span *ngIf="serie.universe"> ({{ serie.universe.name}})</span></option>
-              </select>
+            <div *ngIf="currentStep === 2">
+              <div class="form-group">
+                <label for="max-teams">Maximum teams</label>
+                <input type="number" class="form-control" formControlName="max-teams" id="max-teams">
+              </div>
+
+              <div class="form-group">
+                <label for="max-drivers">Maximum race drivers per team</label>
+                <input type="number" class="form-control" formControlName="max-drivers" id="max-drivers">
+              </div>
+
+              <div class="form-group">
+                <label for="max-reserves">Maximum reserve drivers per team</label>
+                <input type="number" class="form-control" formControlName="max-reserves" id="max-reserves">
+                <span class="small">0 to disallow reserve drivers</span>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="min-race-driver-age">Minimum race driver age</label>
+                  <input type="number" class="form-control" formControlName="min-race-driver-age" id="min-race-driver-age">
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="max-race-driver-age">Maximum race driver age</label>
+                  <input type="number" class="form-control" formControlName="max-race-driver-age" id="max-race-driver-age">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="min-reserve-driver-age">Minimum reserve driver age</label>
+                  <input type="number" class="form-control" formControlName="min-reserve-driver-age" id="min-reserve-driver-age">
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="max-reserve-driver-age">Maximum reserve driver age</label>
+                  <input type="number" class="form-control" formControlName="max-reserve-driver-age" id="max-reserve-driver-age">
+                </div>
+              </div>
             </div>
 
-            <button type="submit" class="btn btn-orange" [disabled]="!form.valid || submitted">Create Season</button>
+            <div *ngIf="currentStep === 3">
+              <div class="form-group">
+                <label for="qualy-sessions">Qualifying Sessions</label>
+                <input type="number" class="form-control" formControlName="qualy-sessions" id="qualy-sessions">
+              </div>
+
+              <div class="form-group">
+                <label for="qualy-runs">Runs per qualy session</label>
+                <input type="number" class="form-control" formControlName="qualy-runs" id="qualy-runs">
+              </div>
+
+              <div class="form-group">
+                <label for="pitstops">Pitstops per race</label>
+                <input type="number" class="form-control" formControlName="pitstops" id="pitstops">
+                <span class="small">Each pitstop adds another stint; 1 pitstop = 2 stints, 2 pitstops = 3 stints, etc.</span>
+              </div>
+            </div>
+
+            <div *ngIf="currentStep === 4">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="min-qualy-rng">Minimum qualy run RNG</label>
+                  <input type="number" class="form-control" formControlName="min-qualy-rng" id="min-qualy-rng">
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="max-qualy-rng">Maximum qualy run RNG</label>
+                  <input type="number" class="form-control" formControlName="max-qualy-rng" id="max-qualy-rng">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="min-stint-rng">Minimum race stint RNG</label>
+                  <input type="number" class="form-control" formControlName="min-stint-rng" id="min-stint-rng">
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="max-stint-rng">Maximum race stint RNG</label>
+                  <input type="number" class="form-control" formControlName="max-stint-rng" id="max-stint-rng">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="min-pitstop-loss">Minimum pitstop loss</label>
+                  <input type="number" class="form-control" formControlName="min-pitstop-loss" id="min-pitstop-loss">
+                  <span class="small">Enter as positive number</span>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="max-pitstop-loss">Maximum pitstop loss</label>
+                  <input type="number" class="form-control" formControlName="max-pitstop-loss" id="max-pitstop-loss">
+                  <span class="small">Enter as positive number, bigger than minimum pitstop loss</span>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="min-dnf-rng">Minimum DNF RNG</label>
+                  <input type="number" class="form-control" formControlName="min-dnf-rng" id="min-dnf-rng">
+                </div>
+
+                <div class="form-group col-md-4">
+                  <label for="max-dnf-rng">Maximum DNF RNG</label>
+                  <input type="number" class="form-control" formControlName="max-dnf-rng" id="max-dnf-rng">
+                </div>
+
+                <div class="form-group col-md-4">
+                  <label for="dnf-start">Min. RNG for DNF</label>
+                  <input type="number" class="form-control" formControlName="dnf-start" id="dnf-start">
+                  <span class="small">Driver DNFs with this RNG or higher</span>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="currentStep === 5">
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="min-team-dev-rng">Minimum team dev RNG</label>
+                    <input type="number" class="form-control" formControlName="min-team-dev-rng" id="min-team-dev-rng">
+                  </div>
+  
+                  <div class="form-group col-md-6">
+                    <label for="max-team-dev-rng">Maximum team dev RNG</label>
+                    <input type="number" class="form-control" formControlName="max-team-dev-rng" id="max-team-dev-rng">
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="min-driver-dev-rng">Minimum driver dev RNG</label>
+                    <input type="number" class="form-control" formControlName="min-driver-dev-rng" id="min-driver-dev-rng">
+                  </div>
+  
+                  <div class="form-group col-md-6">
+                    <label for="max-driver-dev-rng">Maximum driver dev RNG</label>
+                    <input type="number" class="form-control" formControlName="max-driver-dev-rng" id="max-driver-dev-rng">
+                  </div>
+                </div>
+            </div>
+
+            <input type="button" class="btn btn-outline-dark mr-3" (click)="previousStep()" *ngIf="currentStep > 1" value="Previous Step">
+            <input type="button" class="btn btn-orange" (click)="nextStep()" value="Next Step" *ngIf="currentStep < lastStep">
+            <input type="submit" class="btn btn-orange" value="Create Season" *ngIf="currentStep === lastStep" [disabled]="submitted">
           </form>
         </div>
       </div>
